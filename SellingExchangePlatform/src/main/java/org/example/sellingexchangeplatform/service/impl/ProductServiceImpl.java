@@ -115,4 +115,9 @@ public class ProductServiceImpl implements ProductService {
                 .map(productMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void setProductMapper(ProductMapper productMapper) {
+
+    }
 }
