@@ -1,0 +1,2 @@
+web: java -jar build/libs/SellingExchangePlatform-0.0.1-SNAPSHOT.jar
+java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.jar

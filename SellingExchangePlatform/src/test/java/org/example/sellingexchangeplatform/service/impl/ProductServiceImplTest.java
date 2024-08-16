@@ -6,7 +6,6 @@ import org.example.sellingexchangeplatform.dto.response.ProductResponseDTO;
 import org.example.sellingexchangeplatform.entity.Product;
 import org.example.sellingexchangeplatform.entity.User;
 import org.example.sellingexchangeplatform.exception.BadRequestException;
-import org.example.sellingexchangeplatform.exception.NotFoundException;
 import org.example.sellingexchangeplatform.mapper.ProductMapper;
 import org.example.sellingexchangeplatform.repository.ProductRepository;
 import org.example.sellingexchangeplatform.repository.UserRepository;
@@ -31,14 +30,14 @@ class ProductServiceImplTest {
     private UserRepository userRepository;
 
     @Mock
-    private ProductMapper productMapper;  // Ensure that ProductMapper is mocked
+    private ProductMapper productMapper;
 
     @InjectMocks
     private ProductServiceImpl productService;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);  // Initialize the mocks
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -60,14 +59,17 @@ class ProductServiceImplTest {
         product.setProductType(ProductType.SALE);
         product.setSeller(seller);
 
+        ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+
         when(userRepository.findById(1L)).thenReturn(Optional.of(seller));
         when(productRepository.save(any(Product.class))).thenReturn(product);
-        when(productMapper.toDto(any(Product.class))).thenReturn(new ProductResponseDTO());
+        when(productMapper.toDto(any(Product.class))).thenReturn(productResponseDTO);
 
         ProductResponseDTO responseDTO = productService.createProduct(requestDTO, 1L);
 
         assertNotNull(responseDTO);
         verify(productRepository, times(1)).save(any(Product.class));
+        verify(productMapper, times(1)).toDto(any(Product.class));
     }
 
     @Test
@@ -85,9 +87,11 @@ class ProductServiceImplTest {
         existingProduct.setPrice(100.0);
         existingProduct.setProductType(ProductType.SALE);
 
+        ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+
         when(productRepository.findById(1L)).thenReturn(Optional.of(existingProduct));
         when(productRepository.save(any(Product.class))).thenReturn(existingProduct);
-        when(productMapper.toDto(any(Product.class))).thenReturn(new ProductResponseDTO());
+        when(productMapper.toDto(any(Product.class))).thenReturn(productResponseDTO);
 
         ProductResponseDTO responseDTO = productService.updateProduct(1L, requestDTO);
 
@@ -96,6 +100,7 @@ class ProductServiceImplTest {
         assertEquals(requestDTO.getDescription(), existingProduct.getDescription());
         assertEquals(requestDTO.getPrice(), existingProduct.getPrice());
         verify(productRepository, times(1)).save(existingProduct);
+        verify(productMapper, times(1)).toDto(any(Product.class));
     }
 
     @Test
@@ -195,6 +200,7 @@ class ProductServiceImplTest {
 
         assertNotNull(responseDTO);
         verify(productRepository, times(1)).findById(1L);
+        verify(productMapper, times(1)).toDto(any(Product.class));
     }
 
     @Test
@@ -207,6 +213,7 @@ class ProductServiceImplTest {
         assertNotNull(responseDTOs);
         assertFalse(responseDTOs.isEmpty());
         verify(productRepository, times(1)).findAll();
+        verify(productMapper, times(1)).toDto(any(Product.class));
     }
 
     @Test
@@ -230,5 +237,6 @@ class ProductServiceImplTest {
         assertFalse(responseDTOs.isEmpty());
         verify(productRepository, times(1))
                 .findBySellerIdAndIsSoldFalseAndExchangeProductIdIsNull(1L);
+        verify(productMapper, times(1)).toDto(any(Product.class));
     }
 }

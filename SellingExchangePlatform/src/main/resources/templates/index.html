@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oley.Biz - Xoş Gəlmişsiniz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #ff4e50, #f9d423);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #FFD700;
+        }
+
+        .container {
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-out;
+            color: #FFD700;
+        }
+
+        p {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .swagger-button {
+            font-size: 1.2em;
+            color: white;
+            background-color: #FF4E50;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .swagger-button:hover {
+            background-color: #D63434;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #f1f1f1;
+        }
+
+        .footer .team {
+            margin-top: 20px;
+        }
+
+        .footer .team a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .footer .team a:hover {
+            color: #FF4E50;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    OLEY.BIZ
+</div>
+
+<div class="container">
+    <h1>Xoş Gəlmisiniz!</h1>
+    <p>Bu sayt <strong>"1C Academy Final Layihəsi"</strong> çərçivəsində hazırlanır.</p>
+    <p>Saytımız tam hazır olduqdan sonra bütün funksiyalar istifadəyə veriləcək.</p>
+    <p>Hələlik, zəhmət olmasa, <a href="/swagger-ui/index.html" class="swagger-button">Swagger</a> vasitəsilə davam edin.</p>
+</div>
+
+<div class="footer">
+    <p>&copy; 2024 Oley.Biz - Bütün hüquqlar qorunur.</p>
+    <div class="team">
+        <p>Hazırlayanlar:</p>
+        <a href="https://www.linkedin.com/in/saqimammadov/" target="_blank">Saqi Məmmədov</a> |
+        <a href="https://www.linkedin.com/in/habib-habibli/" target="_blank">Həbib Həbibli</a> |
+        <a href="https://www.linkedin.com/in/alihuseyn-khaligov-a88a3b271/" target="_blank">Əlihuseyn Xaliqov</a>
+    </div>
+</div>
+</body>
+</html>

@@ -32,6 +32,6 @@ public class UserRequestDTO {
     private String password;
 
     @NotBlank
-    @Email(message = "Email forması düzgün deyil")
+    @Email(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$" , message = "Email forması düzgün deyil")
     private String email;
 }

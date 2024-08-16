@@ -44,7 +44,7 @@ public class ReplayServiceImpl implements ReplayService {
         Replay replay = new Replay();
         replay.setContent(replayRequestDTO.getContent());
         replay.setReview(review);
-        replay.setUser(user); // Burada User obyektini Replay obyektinə təyin edirik
+        replay.setUser(user);
         replay.setCreatedDate(LocalDateTime.now());
 
         Replay savedReplay = replayRepository.save(replay);

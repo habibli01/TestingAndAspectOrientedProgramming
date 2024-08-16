@@ -12,10 +12,11 @@ import org.example.sellingexchangeplatform.repository.UserProductListRepository;
 import org.example.sellingexchangeplatform.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -41,6 +42,9 @@ class UserProductListServiceImplTest {
 
     @InjectMocks
     private UserProductListServiceImpl userProductListService;
+
+    @Captor
+    private ArgumentCaptor<UserProductList> userProductListCaptor;
 
     @BeforeEach
     void setUp() {
@@ -97,12 +101,14 @@ class UserProductListServiceImplTest {
 
         userProductListService.addProductToList(userId, productId);
 
-        UserProductList userProductList = new UserProductList();
-        userProductList.setUser(user);
-        userProductList.setProduct(product);
-        userProductList.setAddedDate(LocalDateTime.now());
+        verify(userProductListRepository).save(userProductListCaptor.capture());
 
-        verify(userProductListRepository, times(1)).save(userProductList);
+        UserProductList captured = userProductListCaptor.getValue();
+
+        assertNotNull(captured);
+        assertEquals(user, captured.getUser());
+        assertEquals(product, captured.getProduct());
+        assertNotNull(captured.getAddedDate());
     }
 
     @Test

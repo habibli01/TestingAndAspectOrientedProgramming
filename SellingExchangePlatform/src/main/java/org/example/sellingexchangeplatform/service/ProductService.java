@@ -20,5 +20,4 @@ public interface ProductService {
 
     List<ProductResponseDTO> getUserActiveProducts(Long userId);
 
-    void setProductMapper(ProductMapper productMapper);
 }

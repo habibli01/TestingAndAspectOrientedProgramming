@@ -39,12 +39,10 @@ public class OrderServiceImpl implements OrderService {
             Product exchangeProduct = productRepository.findById(exchangeProductId)
                     .orElseThrow(() -> new NotFoundException(String.format(ExceptionMessage.PRODUCT_NOT_FOUND.getMessage(), exchangeProductId)));
 
-            // Qiymətləri yoxlayın
             if (!product.getPrice().equals(exchangeProduct.getPrice())) {
                 throw new BadRequestException("Məhsulların qiymətləri eyni deyil.");
             }
 
-            // Məhsul sahiblərini dəyişdirin
             User originalSeller = product.getSeller();
             User exchangeSeller = exchangeProduct.getSeller();
 
@@ -54,7 +52,6 @@ public class OrderServiceImpl implements OrderService {
             productRepository.save(product);
             productRepository.save(exchangeProduct);
         } else if (orderType == OrderType.SALE) {
-            // Normal satış məntiqi
             if (buyer.getBalance() < product.getPrice()) {
                 throw new BadRequestException("Balans kifayət qədər deyil.");
             }
@@ -72,7 +69,6 @@ public class OrderServiceImpl implements OrderService {
             throw new BadRequestException("Səhv sifariş növü.");
         }
 
-        // Order obyektini yaratmaq
         Order order = new Order();
         order.setProduct(product);
         order.setBuyer(buyer);

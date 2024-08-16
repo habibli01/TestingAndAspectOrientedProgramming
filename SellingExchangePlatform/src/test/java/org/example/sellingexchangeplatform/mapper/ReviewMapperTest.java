@@ -22,8 +22,13 @@ class ReviewMapperTest {
         Product product = new Product();
         product.setName("Test Product");
 
-        // Arrange: Create a Review entity (assuming comment is set via constructor)
+        // Arrange: Create a Review entity
         Review review = new Review();
+        review.setId(1L);
+        review.setUser(user);  // Set the user to the review
+        review.setProduct(product);  // Set the product to the review
+        review.setRating(5);
+        review.setContent("Great product!");
 
         // Act: Map Review entity to ReviewResponseDTO
         ReviewResponseDTO dto = mapper.toDto(review);
@@ -32,7 +37,8 @@ class ReviewMapperTest {
         assertNotNull(dto);
         assertEquals(review.getId(), dto.getId());
         assertEquals(review.getRating(), dto.getRating());
-        assertEquals(review.getUser().getUsername(), dto.getUsername());
-        assertEquals(review.getProduct().getName(), dto.getProductName());
+        assertEquals(review.getContent(), dto.getContent());
+        assertEquals(user.getUsername(), dto.getUsername());  // Check mapped username
+        assertEquals(product.getName(), dto.getProductName());  // Check mapped product name
     }
 }

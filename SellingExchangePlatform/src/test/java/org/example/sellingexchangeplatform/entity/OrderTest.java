@@ -25,7 +25,7 @@ class OrderTest {
                 .exchangeProductId(123L)
                 .orderType(OrderType.SALE)
                 .orderDate(LocalDateTime.of(2023, 8, 13, 12, 0))
-                .isCompleted(false)
+                .isCompleted(false)  // Bu alanın `false` olarak ayarlandığından emin olun
                 .build();
     }
 
@@ -43,7 +43,7 @@ class OrderTest {
     @Test
     void testOrderDefaults() {
         Order newOrder = new Order();
-        assertFalse(newOrder.getIsCompleted());
+        assertFalse(newOrder.getIsCompleted());  // Varsayılan değerin `false` olduğunu kontrol edin
     }
 
     @Test
@@ -74,6 +74,6 @@ class OrderTest {
         assertEquals(456L, builtOrder.getExchangeProductId());
         assertEquals(OrderType.EXCHANGE, builtOrder.getOrderType());
         assertEquals(LocalDateTime.of(2023, 8, 14, 12, 0), builtOrder.getOrderDate());
-        assertFalse(builtOrder.getIsCompleted());
+        assertFalse(builtOrder.getIsCompleted());  // Varsayılan değerin `false` olduğunu kontrol edin
     }
 }

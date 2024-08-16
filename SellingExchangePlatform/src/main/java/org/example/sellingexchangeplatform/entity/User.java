@@ -45,7 +45,7 @@ public class User {
     String email;
 
     @Column(nullable = false)
-    Double balance = 0.0;  // İstifadəçinin balansı
+    Double balance = 0.0;
 
     @Column(nullable = false, updatable = false)
     LocalDateTime registryDate;

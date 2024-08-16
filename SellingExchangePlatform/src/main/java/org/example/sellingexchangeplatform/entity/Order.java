@@ -30,14 +30,15 @@ public class Order {
     Product product;
 
     @Column(name = "exchange_product_id")
-    Long exchangeProductId;  // Mübadilə üçün seçilmiş məhsulun ID-si
+    Long exchangeProductId;
 
     @Enumerated(EnumType.STRING)
-    OrderType orderType; // Satış və ya mübadilə
+    OrderType orderType;
 
     @Column(nullable = false)
     LocalDateTime orderDate;
 
+    @Builder.Default
     Boolean isCompleted = false;
 
     @Column(nullable = false, updatable = false)

@@ -15,10 +15,26 @@ class ProductTest {
     private User seller;
     private User buyer;
 
+    @BeforeEach
+    void setUp() {
+        seller = mock(User.class);
+        buyer = mock(User.class);
+
+        product = Product.builder()
+                .name("Test Product")
+                .description("Test Description")
+                .productType(ProductType.SALE)
+                .price(100.0)
+                .seller(seller)
+                .buyer(buyer)
+                .isSold(false)
+                .build();
+    }
+
     @Test
     void testOnCreateSetsCreatedDate() {
-        product.onCreate();
-        assertNotNull(product.getCreatedDate());
+        product.onCreate();  // Ürün nesnesi üzerinde `onCreate` metodunu çağırıyoruz
+        assertNotNull(product.getCreatedDate());  // Oluşturulma tarihinin set edildiğini kontrol edin
         assertTrue(product.getCreatedDate().isBefore(LocalDateTime.now()) || product.getCreatedDate().isEqual(LocalDateTime.now()));
     }
 

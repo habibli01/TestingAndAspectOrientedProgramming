@@ -27,7 +27,7 @@ public class Product {
     String description;
 
     @Enumerated(EnumType.STRING)
-    ProductType productType; // Satış üçün və ya mübadilə üçün
+    ProductType productType;
 
     @Column(nullable = false)
     Double price;

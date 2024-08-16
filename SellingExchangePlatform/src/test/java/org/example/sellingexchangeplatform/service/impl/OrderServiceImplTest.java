@@ -5,7 +5,6 @@ import org.example.sellingexchangeplatform.dto.response.OrderResponseDTO;
 import org.example.sellingexchangeplatform.entity.Order;
 import org.example.sellingexchangeplatform.entity.Product;
 import org.example.sellingexchangeplatform.entity.User;
-import org.example.sellingexchangeplatform.exception.BadRequestException;
 import org.example.sellingexchangeplatform.repository.OrderRepository;
 import org.example.sellingexchangeplatform.repository.ProductRepository;
 import org.example.sellingexchangeplatform.repository.UserRepository;
@@ -92,5 +91,5 @@ class OrderServiceImplTest {
         verify(userRepository, times(1)).save(buyer);
     }
 
-    // Other tests...
+
 }

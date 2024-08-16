@@ -36,12 +36,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())  // CSRF qorumasını deaktiv etmək
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/authenticate", "/api/users/register").permitAll()  // Bu endpointlərə icazə verilir
-                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()  // Swagger üçün icazə verilir
-                                .anyRequest().authenticated()  // Digər bütün endpointlər autentifikasiyadan keçməlidir
+                                .requestMatchers("/authenticate", "/api/users/register", "/").permitAll()
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                .anyRequest().authenticated()
                 )
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint)
